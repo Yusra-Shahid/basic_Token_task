@@ -16,6 +16,9 @@ app.use(
 )
 app.post('/todo/createUser', todoController.createUser) //CREATE A USER
 
+
+app.put('/todo/updateUser',todoController.updateUser)  //upadate user
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
