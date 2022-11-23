@@ -29,5 +29,12 @@ class TodoController {
             "status": "User Updated"
             })
     }
+    async LoginUser(request, respone){
+        const todoRepo = new TodoRepo();
+        let res = await todoRepo.loginUserRepo(request.body.user_name,request.body.user_password);
+        respone.json({
+             "response ": res
+        })
+    }
 }
 module.exports = TodoController;
