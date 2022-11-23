@@ -25,9 +25,8 @@ class TodoRepo{
         return await pool.query('UPDATE public.user_table SET created_on = $2 WHERE user_id = $1', [user_id,created_on]);
     }
     async loginUserRepo(user_name, user_password){
-        let result1 = await pool.query(`select * from public.user_table where user_name = $1`,[user_name]);
-        let result2 = await pool.query(`select * from public.user_table where user_password = $1`,[user_password]);
-        if(result1.rowCount == 0 || result2.rowCount ==0){
+        let result1 = await pool.query(`select * from public.user_table where user_name = $1 AND user_password = $2`,[user_name,user_password]);
+        if(result1.rowCount == 0){
             let error = "LogIn Failed";
             return error;
         }
