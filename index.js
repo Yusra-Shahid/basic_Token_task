@@ -6,6 +6,7 @@ const port = 3002
 
 const pool = require('./dbConn')
 const TodoController = require('./controllers/todoController')
+const CheckBasicToken = require('./middleware/testmiddleware')
 const todoController = new TodoController()
 
 app.use(bodyParser.json())
@@ -14,7 +15,8 @@ app.use(
     extended: true,
   })
 )
-app.post('/todo/createUser', todoController.createUser) //CREATE A USER
+
+app.post('/todo/createUser',CheckBasicToken, todoController.createUser) //CREATE A USER
 
 app.get('/', (req, res) => {
   res.send('Hello Wordsld!')
